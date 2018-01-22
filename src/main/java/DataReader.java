@@ -12,8 +12,7 @@ public class DataReader {
         try {
             bufferedReader = new BufferedReader(new FileReader(fileName));
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-            e.printStackTrace();
+            System.out.println("File not found\n"+ e.getMessage());
 
         }
         String inputLine;
@@ -26,14 +25,13 @@ public class DataReader {
                 list.add(inputLine);
             }
         } catch (IOException e) {
-            System.out.println("File was not read properly");
-            e.printStackTrace();
+            System.out.println("File was not read properly\n"+e.getMessage());
         }
         finally{
             try {
                 bufferedReader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());;
             }
         }
         return list;

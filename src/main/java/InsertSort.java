@@ -115,12 +115,12 @@ public class InsertSort {
                 fr.flush();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Couldn't open the file to write\n" + e.getMessage());
         }finally{
             try {
                 fr.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
     }

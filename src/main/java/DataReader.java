@@ -7,31 +7,31 @@ import java.util.List;
 
 public class DataReader {
 
-    public  List<String> readFile(String fileName) {
+    public List<String> readFile(String fileName) {
         BufferedReader bufferedReader = null;
         try {
             bufferedReader = new BufferedReader(new FileReader(fileName));
         } catch (FileNotFoundException e) {
-            System.out.println("File not found\n"+ e.getMessage());
+            System.out.println("File not found\n" + e.getMessage());
 
         }
         String inputLine;
         List<String> list = new ArrayList<>();
         try {
             while ((inputLine = bufferedReader.readLine()) != null) {
-                if (inputLine.equals("")){
+                if (inputLine.equals("")) {
                     continue;
                 }
                 list.add(inputLine);
             }
         } catch (IOException e) {
-            System.out.println("File was not read properly\n"+e.getMessage());
-        }
-        finally{
+            System.out.println("File was not read properly\n" + e.getMessage());
+        } finally {
             try {
                 bufferedReader.close();
             } catch (IOException e) {
-                System.out.println(e.getMessage());;
+                System.out.println(e.getMessage());
+                ;
             }
         }
         return list;

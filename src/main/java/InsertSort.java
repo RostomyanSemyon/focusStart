@@ -12,7 +12,7 @@ public class InsertSort {
     private static final String descendingSortMode = "desc";
 
 
-    public  void makeSort(String sortMode, String order, boolean numericState, List<String> sourceList, String outputFileName) {
+    public void makeSort(String sortMode, String order, boolean numericState, List<String> sourceList, String outputFileName) {
         String[] res = null;
         if (sortMode.equals(intSortMode) & order.equals(ascendingOrder) & numericState) {
             List<Integer> array = new ArrayList<>();
@@ -41,7 +41,7 @@ public class InsertSort {
     }
 
     private String[] insertSort(String[] array, String order) {
-        if(order.equals(ascendingOrder)) {
+        if (order.equals(ascendingOrder)) {
             for (int j = 1; j < array.length; j++) {
                 int i = j - 1;
                 String value = array[j];
@@ -52,8 +52,7 @@ public class InsertSort {
                 array[i + 1] = value;
             }
             return array;
-        }
-        else {
+        } else {
             for (int j = 1; j < array.length; j++) {
                 int i = j - 1;
                 String value = array[j];
@@ -69,7 +68,7 @@ public class InsertSort {
 
 
     private String[] insertSort(Integer[] array, String order) {
-        if(order.equals(ascendingOrder)) {
+        if (order.equals(ascendingOrder)) {
             for (int j = 1; j < array.length; j++) {
                 int i = j - 1;
                 Integer value = array[j];
@@ -84,8 +83,7 @@ public class InsertSort {
                 result[i] = (array[i]).toString();
             }
             return result;
-        }
-        else {
+        } else {
             for (int j = 1; j < array.length; j++) {
                 int i = j - 1;
                 Integer value = array[j];
@@ -103,12 +101,12 @@ public class InsertSort {
         }
     }
 
-    private static void writeData(String fileName, String[] array){
+    private static void writeData(String fileName, String[] array) {
         File file = new File(fileName);
         FileWriter fr = null;
-        try{
+        try {
             fr = new FileWriter(file);
-            for(String el: array){
+            for (String el : array) {
                 fr.write(el);
                 fr.flush();
                 fr.write("\r\n");
@@ -116,7 +114,7 @@ public class InsertSort {
             }
         } catch (IOException e) {
             System.out.println("Couldn't open the file to write\n" + e.getMessage());
-        }finally{
+        } finally {
             try {
                 fr.close();
             } catch (IOException e) {

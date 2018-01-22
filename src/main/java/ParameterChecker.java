@@ -1,22 +1,21 @@
 public class ParameterChecker {
 
-    private static final String stringSortMode = "string";
-    private static final String intSortMode = "integer";
-    private static final String ascendingOrder = "asc";
-    private static final String descendingSortMode = "desc";
+    private static final String STRING_SORT_MODE = "string";
+    private static final String INT_SORT_MODE = "integer";
+    private static final String ASCENDING_ORDER = "asc";
+    private static final String DESCENDING_SORT_MODE = "desc";
 
     public static void checkSortConsistent(String sortMode, String order, boolean numericState) {
-        checkSortMode(sortMode, numericState);
+        checkSortMode(sortMode);
         checkSortOrder(order);
-        if (sortMode.equals(intSortMode) & numericState == false) {
+        if (sortMode.equals(INT_SORT_MODE) & numericState == false) {
             System.out.println("Incompatible sorting options");
             System.exit(0);
         }
-        return;
     }
 
     private static void checkSortOrder(String order) {
-        if (order.equals(ascendingOrder) || order.equals(descendingSortMode)) {
+        if (order.equals(ASCENDING_ORDER) || order.equals(DESCENDING_SORT_MODE)) {
             return;
         } else {
             System.out.println("Incorrect sort order (" + order + ")");
@@ -24,8 +23,8 @@ public class ParameterChecker {
         }
     }
 
-    private static void checkSortMode(String sortMode, boolean numericState) {
-        if (sortMode.equals(stringSortMode) || sortMode.equals(intSortMode)) {
+    private static void checkSortMode(String sortMode) {
+        if (sortMode.equals(STRING_SORT_MODE) || sortMode.equals(INT_SORT_MODE)) {
             return;
         } else {
             System.out.println("Unavailable sort mode (" + sortMode + ")");

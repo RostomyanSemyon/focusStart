@@ -6,48 +6,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataReader {
+    private boolean isDataNumeric;
+
+    public boolean isDataNumeric() {
+        return isDataNumeric;
+    }
 
     public List<String> readFile(String fileName) {
-        BufferedReader bufferedReader = null;
-        try {
-            bufferedReader = new BufferedReader(new FileReader(fileName));
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found\n" + e.getMessage());
+        isDataNumeric = true;
 
-        }
-        String inputLine;
         List<String> list = new ArrayList<>();
-        try {
+
+        String inputLine;
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             while ((inputLine = bufferedReader.readLine()) != null) {
                 if (inputLine.equals("")) {
                     continue;
                 }
                 list.add(inputLine);
+                isDataNumeric &= isStringNumeric(inputLine);
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found\n" + e.getMessage());
+            return list;
         } catch (IOException e) {
             System.out.println("File was not read properly\n" + e.getMessage());
-        } finally {
-            try {
-                bufferedReader.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                ;
-            }
         }
+
         return list;
     }
 
-    public static boolean checkDataNumeric(List<String> data) {
-        boolean state = true;
-        for (String el : data) {
-            try {
-                Integer.parseInt(el);
-                state = true;
-            } catch (NumberFormatException e) {
-                state = false;
-                return state;
-            }
+    private boolean isStringNumeric(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
-        return state;
     }
 }
